@@ -1,21 +1,14 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <stdio.h> //TODO debugging
-# include <stdlib.h> //malloc free
-# include <unistd.h> // write
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include "minilibx-linux/mlx.h"
 
-
-#define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
-
-/*
- * We use a square to 
- * keep the rendering math simple
-*/
 #define WIDTH	800
 #define	HEIGHT	800
 
@@ -38,56 +31,29 @@
 #define ELECTRIC_BLUE   0x0066FF  // A radiant blue
 #define LAVA_RED        0xFF3300  // A bright, molten red
 
-
-
-
-
-/*
- * COMPLEX value
-*/
 typedef struct	s_complex
 {
-	//		real
 	double	x;
-	//		i
 	double	y;
 }				t_complex;
 
-
-
-/*
- * IMAGE
- * This is basically a pixels buffer
- * values from mlx_get_data_addr()
-*/
 typedef struct	s_img
 {
-	void	*img_ptr; //pointer to image struct
-	char	*pixels_ptr; //points to the actual pixels
+	void	*img_ptr;
+	char	*pixels_ptr;
 	int		bpp;
 	int		endian;
 	int		line_len;
 }				t_img;
 
-
-/*
- * FRACTAL ID
- * ~ MLX stuff
- * ~ Image 
- * ~ Hooks values
-*/
 typedef struct	s_fractal
 {
 	char	*name;
-	//MLX
-	void	*mlx_connection; // mlx_init()
-	void	*mlx_window; 	 // mlx_new_window()
-	//Image
+	void	*mlx_connection;
+	void	*mlx_window;
 	t_img	img;
 
-	//Hooks member variables //TODO
-	double	escape_value; // hypotenuse
-	int		iterations_defintion; // value tight with the image quality and rendering speed
+	int		iterations_defintion;
 	double	shift_x;
 	double	shift_y;
 	double	zoom;
